@@ -1,4 +1,4 @@
-package org.example.practicasemana3;
+package org.example.practicasemana3.Ejercicio1;
 
 import javafx.application.Application;
 
