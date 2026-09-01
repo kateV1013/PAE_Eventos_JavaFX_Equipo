@@ -1,4 +1,4 @@
-package org.example.practicasemana3.Ejercicio1;
+package org.example.practicasemana3;
 
 import javafx.application.Application;
 
@@ -7,4 +7,4 @@ public class Launcher {
         Application.launch(HelloApplication.class, args);
     }
 }
-//aca  verifique el main del github
+
