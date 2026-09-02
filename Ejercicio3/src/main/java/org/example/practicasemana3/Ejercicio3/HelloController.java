@@ -27,7 +27,7 @@ public class HelloController {
             new Producto("A002", "Jicara pintada", "Decoracion", 185.50, 14, Color.web("#c85f2f")),
             new Producto("A003", "Bolso tejido", "Accesorios", 420.00, 9, Color.web("#365f91")),
             new Producto("A004", "Ceramica negra", "Ceramica", 310.75, 4, Color.web("#5a4a42"))
-    );
+    );// crea objetos por defecto en la clase producto
 
     @FXML
     private TableView<Producto> tblProductos;
