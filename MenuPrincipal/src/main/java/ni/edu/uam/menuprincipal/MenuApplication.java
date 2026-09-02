@@ -18,8 +18,6 @@ public class MenuApplication extends Application {
         Scene scene = new Scene(fxmlLoader.load(), 760, 480);
         stage.setTitle("Menu principal");
         stage.setScene(scene);
-        stage.setMinWidth(700);
-        stage.setMinHeight(440);
         stage.show();
     }
 }
