@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.Menu?>
+<?import javafx.scene.control.MenuBar?>
+<?import javafx.scene.control.MenuItem?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.ToolBar?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.VBox?>
+
+<BorderPane xmlns:fx="http://javafx.com/fxml"
+            fx:controller="org.example.practicasemana3.Ejercicio3.HelloController">
+    <top>
+        <VBox>
+            <MenuBar>
+                <Menu text="Catalogo">
+                    <MenuItem text="Nuevo producto" onAction="#nuevoProducto"/>
+                    <MenuItem text="Editar cantidad" onAction="#editarCantidad"/>
+                    <MenuItem text="Eliminar producto" onAction="#eliminarProducto"/>
+                    <MenuItem text="Guardar catalogo" onAction="#guardarCatalogo"/>
+                    <MenuItem text="Buscar producto" onAction="#buscarProducto"/>
+                    <MenuItem text="Ver catalogo" onAction="#mostrarCatalogo"/>
+                </Menu>
+                <Menu text="Ventas">
+                    <MenuItem text="Registrar venta" onAction="#registrarVenta"/>
+                </Menu>
+                <Menu text="Ayuda">
+                    <MenuItem text="Ver ayuda" onAction="#mostrarAyuda"/>
+                </Menu>
+            </MenuBar>
+            <ToolBar>
+                <Button text="Nuevo" onAction="#nuevoProducto"/>
+                <Button text="Cantidad" onAction="#editarCantidad"/>
+                <Button text="Eliminar" onAction="#eliminarProducto"/>
+                <Button text="Guardar" onAction="#guardarCatalogo"/>
+                <Button text="Buscar" onAction="#buscarProducto"/>
+            </ToolBar>
+        </VBox>
+    </top>
+
+    <center>
+        <TableView fx:id="tblProductos" onMouseClicked="#mostrarDetalleConMouse">
+            <columns>
+                <TableColumn fx:id="colImagen" text="Imagen" prefWidth="90"/>
+                <TableColumn fx:id="colCodigo" text="Codigo" prefWidth="90"/>
+                <TableColumn fx:id="colNombre" text="Producto" prefWidth="190"/>
+                <TableColumn fx:id="colCategoria" text="Categoria" prefWidth="140"/>
+                <TableColumn fx:id="colPrecio" text="Precio" prefWidth="100"/>
+                <TableColumn fx:id="colCantidad" text="Cantidad" prefWidth="90"/>
+            </columns>
+        </TableView>
+    </center>
+
+    <bottom>
+        <VBox spacing="8.0">
+            <padding>
+                <Insets bottom="14.0" left="14.0" right="14.0" top="14.0"/>
+            </padding>
+            <Label text="Detalle del producto" style="-fx-font-size: 16px; -fx-font-weight: bold;"/>
+            <Label fx:id="lblDetalle" text="Seleccione un producto para ver sus detalles." wrapText="true"/>
+            <Label fx:id="lblEstado" text="Catalogo artesanal listo." wrapText="true"/>
+        </VBox>
+    </bottom>
+</BorderPane>
