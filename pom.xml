@@ -60,7 +60,7 @@
                         <!-- Default configuration for running with: mvn clean javafx:run -->
                         <id>default-cli</id>
                         <configuration>
-                            <mainClass>ni.edu.uam.ejercicio2/ni.edu.uam.ejercicio2.HelloApplication</mainClass>
+                            <mainClass>ni.edu.uam.ejercicio2/ni.edu.uam.ejercicio2.CafeApplication</mainClass>
                             <launcher>app</launcher>
                             <jlinkZipName>app</jlinkZipName>
                             <jlinkImageName>app</jlinkImageName>
