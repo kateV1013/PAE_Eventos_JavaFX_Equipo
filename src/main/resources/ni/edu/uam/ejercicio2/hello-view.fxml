@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
+
+<BorderPane stylesheets="@styles.css" styleClass="app-root" xmlns:fx="http://javafx.com/fxml"
+            fx:controller="ni.edu.uam.ejercicio2.HelloController">
+    <top>
+        <VBox spacing="6.0" styleClass="header">
+            <Label text="Recepcion de cafe" styleClass="title"/>
+            <Label text="Registro de lotes entregados por productores" styleClass="subtitle"/>
+        </VBox>
+    </top>
+
+    <center>
+        <VBox spacing="16.0" styleClass="content">
+            <HBox spacing="14.0">
+                <VBox spacing="4.0" styleClass="metric-card">
+                    <Label text="Lotes de hoy" styleClass="metric-label"/>
+                    <Label text="12" styleClass="metric-value"/>
+                </VBox>
+                <VBox spacing="4.0" styleClass="metric-card">
+                    <Label text="Quintales recibidos" styleClass="metric-label"/>
+                    <Label text="148.5" styleClass="metric-value"/>
+                </VBox>
+                <VBox spacing="4.0" styleClass="metric-card accent-card">
+                    <Label text="Estado" styleClass="metric-label"/>
+                    <Label text="Recepcion activa" styleClass="metric-value-small"/>
+                </VBox>
+            </HBox>
+
+            <VBox spacing="10.0" styleClass="table-section">
+                <HBox alignment="CENTER_LEFT" spacing="12.0">
+                    <VBox spacing="2.0" HBox.hgrow="ALWAYS">
+                        <Label text="Lotes registrados" styleClass="section-title"/>
+                        <Label text="Seleccione un lote para consultar sus datos principales." styleClass="helper-text"/>
+                    </VBox>
+                    <Button text="Editar lote" styleClass="secondary-button"/>
+                    <Button text="Eliminar lote" styleClass="danger-button"/>
+                </HBox>
+
+                <TableView prefHeight="300.0" styleClass="lots-table">
+                    <columns>
+                        <TableColumn prefWidth="120.0" text="Codigo"/>
+                        <TableColumn prefWidth="250.0" text="Productor"/>
+                        <TableColumn prefWidth="200.0" text="Variedad"/>
+                        <TableColumn prefWidth="130.0" text="Quintales"/>
+                    </columns>
+                    <placeholder>
+                        <Label text="Aun no hay lotes registrados" styleClass="empty-table"/>
+                    </placeholder>
+                </TableView>
+            </VBox>
+
+            <GridPane hgap="16.0" vgap="10.0" styleClass="detail-panel">
+                <Label text="Detalles del lote seleccionado" styleClass="section-title" GridPane.columnIndex="0" GridPane.rowIndex="0" GridPane.columnSpan="2"/>
+                <Label text="Codigo" styleClass="detail-label" GridPane.columnIndex="0" GridPane.rowIndex="1"/>
+                <Label text="Productor" styleClass="detail-label" GridPane.columnIndex="1" GridPane.rowIndex="1"/>
+                <Label text="--" styleClass="detail-value" GridPane.columnIndex="0" GridPane.rowIndex="2"/>
+                <Label text="--" styleClass="detail-value" GridPane.columnIndex="1" GridPane.rowIndex="2"/>
+                <Label text="Variedad" styleClass="detail-label" GridPane.columnIndex="0" GridPane.rowIndex="3"/>
+                <Label text="Quintales" styleClass="detail-label" GridPane.columnIndex="1" GridPane.rowIndex="3"/>
+                <Label text="--" styleClass="detail-value" GridPane.columnIndex="0" GridPane.rowIndex="4"/>
+                <Label text="--" styleClass="detail-value" GridPane.columnIndex="1" GridPane.rowIndex="4"/>
+            </GridPane>
+        </VBox>
+    </center>
+    <padding>
+        <Insets bottom="24.0" left="24.0" right="24.0" top="24.0"/>
+    </padding>
+</BorderPane>
