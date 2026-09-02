@@ -55,7 +55,7 @@
                 <artifactId>javafx-maven-plugin</artifactId>
                 <version>0.0.8</version>
                 <configuration>
-                    <mainClass>ni.edu.uam.menuprincipal/ni.edu.uam.menuprincipal.MenuApplication</mainClass>
+                    <mainClass>ni.edu.uam.menuprincipal/ni.edu.uam.menuprincipal.Launcher</mainClass>
                 </configuration>
             </plugin>
         </plugins>
