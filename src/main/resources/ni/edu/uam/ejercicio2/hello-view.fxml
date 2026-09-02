@@ -2,9 +2,12 @@
 
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Button?>
+<?import javafx.scene.control.DatePicker?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.TableColumn?>
 <?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.TextArea?>
+<?import javafx.scene.control.TextField?>
 <?import javafx.scene.layout.BorderPane?>
 <?import javafx.scene.layout.GridPane?>
 <?import javafx.scene.layout.HBox?>
@@ -36,22 +39,55 @@
                 </VBox>
             </HBox>
 
+            <VBox spacing="12.0" style="-fx-background-color: #fffdf8; -fx-background-radius: 8; -fx-border-color: #d6e4d8; -fx-border-radius: 8; -fx-padding: 18;">
+                <HBox alignment="CENTER_LEFT" spacing="10.0">
+                    <VBox spacing="2.0" HBox.hgrow="ALWAYS">
+                        <Label text="Nuevo lote recibido" style="-fx-text-fill: #184936; -fx-font-size: 18px; -fx-font-weight: 700;"/>
+                        <Label text="Datos que se toman al momento de pesar y registrar el cafe." style="-fx-text-fill: #6b765c; -fx-font-size: 12px;"/>
+                    </VBox>
+                    <Label text="Area de bascula" style="-fx-background-color: #e7f3ea; -fx-background-radius: 20; -fx-text-fill: #1f6f50; -fx-font-weight: 700; -fx-padding: 7 14 7 14;"/>
+                </HBox>
+
+                <GridPane hgap="14.0" vgap="10.0">
+                    <Label text="Codigo de lote" style="-fx-text-fill: #355447; -fx-font-size: 12px; -fx-font-weight: 700;" GridPane.columnIndex="0" GridPane.rowIndex="0"/>
+                    <Label text="Productor" style="-fx-text-fill: #355447; -fx-font-size: 12px; -fx-font-weight: 700;" GridPane.columnIndex="1" GridPane.rowIndex="0"/>
+                    <Label text="Variedad" style="-fx-text-fill: #355447; -fx-font-size: 12px; -fx-font-weight: 700;" GridPane.columnIndex="2" GridPane.rowIndex="0"/>
+
+                    <TextField promptText="Ej. L-005" prefWidth="190.0" style="-fx-background-color: #f9fbf7; -fx-background-radius: 6; -fx-border-color: #c9dacd; -fx-border-radius: 6; -fx-padding: 9; -fx-text-fill: #2c3b32;" GridPane.columnIndex="0" GridPane.rowIndex="1"/>
+                    <TextField promptText="Nombre del productor" prefWidth="250.0" style="-fx-background-color: #f9fbf7; -fx-background-radius: 6; -fx-border-color: #c9dacd; -fx-border-radius: 6; -fx-padding: 9; -fx-text-fill: #2c3b32;" GridPane.columnIndex="1" GridPane.rowIndex="1"/>
+                    <TextField promptText="Caturra, Bourbon, Catimor..." prefWidth="230.0" style="-fx-background-color: #f9fbf7; -fx-background-radius: 6; -fx-border-color: #c9dacd; -fx-border-radius: 6; -fx-padding: 9; -fx-text-fill: #2c3b32;" GridPane.columnIndex="2" GridPane.rowIndex="1"/>
+
+                    <Label text="Peso del cafe" style="-fx-text-fill: #355447; -fx-font-size: 12px; -fx-font-weight: 700;" GridPane.columnIndex="0" GridPane.rowIndex="2"/>
+                    <Label text="Fecha de entrega" style="-fx-text-fill: #355447; -fx-font-size: 12px; -fx-font-weight: 700;" GridPane.columnIndex="1" GridPane.rowIndex="2"/>
+                    <Label text="Humedad" style="-fx-text-fill: #355447; -fx-font-size: 12px; -fx-font-weight: 700;" GridPane.columnIndex="2" GridPane.rowIndex="2"/>
+
+                    <TextField promptText="Peso en quintales" prefWidth="190.0" style="-fx-background-color: #fff8ee; -fx-background-radius: 6; -fx-border-color: #e0c792; -fx-border-radius: 6; -fx-padding: 9; -fx-text-fill: #5b3a1f;" GridPane.columnIndex="0" GridPane.rowIndex="3"/>
+                    <DatePicker prefWidth="250.0" style="-fx-background-color: #f9fbf7; -fx-background-radius: 6; -fx-border-color: #c9dacd; -fx-border-radius: 6;" GridPane.columnIndex="1" GridPane.rowIndex="3"/>
+                    <TextField promptText="Ej. 11.5%" prefWidth="230.0" style="-fx-background-color: #f9fbf7; -fx-background-radius: 6; -fx-border-color: #c9dacd; -fx-border-radius: 6; -fx-padding: 9; -fx-text-fill: #2c3b32;" GridPane.columnIndex="2" GridPane.rowIndex="3"/>
+
+                    <Label text="Observaciones" style="-fx-text-fill: #355447; -fx-font-size: 12px; -fx-font-weight: 700;" GridPane.columnIndex="0" GridPane.rowIndex="4"/>
+                    <TextArea promptText="Estado del grano, sacos recibidos o notas de calidad" prefHeight="58.0" style="-fx-background-color: #f9fbf7; -fx-background-radius: 6; -fx-border-color: #c9dacd; -fx-border-radius: 6; -fx-text-fill: #2c3b32;" GridPane.columnIndex="0" GridPane.rowIndex="5" GridPane.columnSpan="2"/>
+                    <Button text="Registrar lote" prefWidth="230.0" style="-fx-background-color: linear-gradient(to right, #1f6f50, #2f8d68); -fx-background-radius: 6; -fx-text-fill: white; -fx-font-weight: 700; -fx-padding: 12 16 12 16; -fx-cursor: hand;" GridPane.columnIndex="2" GridPane.rowIndex="5"/>
+                </GridPane>
+            </VBox>
+
             <VBox spacing="10.0" style="-fx-background-color: #fffdf8; -fx-background-radius: 8; -fx-border-color: #d6e4d8; -fx-border-radius: 8; -fx-padding: 16;">
                 <HBox alignment="CENTER_LEFT" spacing="12.0">
                     <VBox spacing="2.0" HBox.hgrow="ALWAYS">
                         <Label text="Lotes registrados" style="-fx-text-fill: #184936; -fx-font-size: 17px; -fx-font-weight: 700;"/>
-                        <Label text="Seleccione un lote para consultar sus datos principales." style="-fx-text-fill: #6b765c; -fx-font-size: 12px;"/>
+                        <Label text="Historial visual de entregas recibidas por la cooperativa." style="-fx-text-fill: #6b765c; -fx-font-size: 12px;"/>
                     </VBox>
                     <Button text="Editar lote" style="-fx-background-color: linear-gradient(to right, #1f6f50, #2f8d68); -fx-background-radius: 6; -fx-text-fill: white; -fx-font-weight: 700; -fx-padding: 9 16 9 16; -fx-cursor: hand;"/>
                     <Button text="Eliminar lote" style="-fx-background-color: #fff0e8; -fx-background-radius: 6; -fx-border-color: #e9896f; -fx-border-radius: 6; -fx-text-fill: #b43b24; -fx-font-weight: 700; -fx-padding: 9 16 9 16; -fx-cursor: hand;"/>
                 </HBox>
 
-                <TableView prefHeight="300.0" style="-fx-background-color: #fffdf8; -fx-border-color: #c9dacd; -fx-border-radius: 8; -fx-background-radius: 8;">
+                <TableView prefHeight="210.0" style="-fx-background-color: #fffdf8; -fx-border-color: #c9dacd; -fx-border-radius: 8; -fx-background-radius: 8;">
                     <columns>
-                        <TableColumn prefWidth="120.0" text="Codigo" style="-fx-alignment: CENTER_LEFT;"/>
-                        <TableColumn prefWidth="250.0" text="Productor" style="-fx-alignment: CENTER_LEFT;"/>
-                        <TableColumn prefWidth="200.0" text="Variedad" style="-fx-alignment: CENTER_LEFT;"/>
-                        <TableColumn prefWidth="130.0" text="Quintales" style="-fx-alignment: CENTER_LEFT;"/>
+                        <TableColumn prefWidth="120.0" text="Codigo lote" style="-fx-alignment: CENTER_LEFT;"/>
+                        <TableColumn prefWidth="210.0" text="Productor" style="-fx-alignment: CENTER_LEFT;"/>
+                        <TableColumn prefWidth="150.0" text="Variedad" style="-fx-alignment: CENTER_LEFT;"/>
+                        <TableColumn prefWidth="130.0" text="Peso" style="-fx-alignment: CENTER_LEFT;"/>
+                        <TableColumn prefWidth="120.0" text="Estado" style="-fx-alignment: CENTER_LEFT;"/>
                     </columns>
                     <placeholder>
                         <Label text="Aun no hay lotes registrados" style="-fx-text-fill: #8a7558; -fx-font-size: 14px;"/>
