@@ -19,71 +19,55 @@ import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.input.MouseEvent;
 
 import java.time.LocalDate;
-import java.util.Optional;
 
 public class LoteController {
+
     @FXML
     private TextField txtCodigo;
-
     @FXML
     private TextField txtProductor;
-
     @FXML
     private ComboBox<String> cbVariedad;
-
     @FXML
     private TextField txtPeso;
-
     @FXML
     private DatePicker dpFechaEntrega;
-
     @FXML
     private ComboBox<String> cbEstado;
-
     @FXML
     private TextArea txtObservaciones;
-
     @FXML
     private Button btnRegistrar;
 
     @FXML
     private Label lblLotesHoy;
-
     @FXML
     private Label lblQuintales;
 
     @FXML
     private TableView<Lote> tablaLotes;
-
     @FXML
     private TableColumn<Lote, String> colCodigo;
-
     @FXML
     private TableColumn<Lote, String> colProductor;
-
     @FXML
     private TableColumn<Lote, String> colVariedad;
-
     @FXML
     private TableColumn<Lote, Double> colPeso;
-
     @FXML
     private TableColumn<Lote, String> colEstado;
 
     @FXML
     private Label lblDetalleCodigo;
-
     @FXML
     private Label lblDetalleProductor;
-
     @FXML
     private Label lblDetalleVariedad;
-
     @FXML
     private Label lblDetallePeso;
 
-    private final ObservableList<Lote> lotes = FXCollections.observableArrayList();
-    private Lote loteEnEdicion;
+    private ObservableList<Lote> listaLotes = FXCollections.observableArrayList();
+    private Lote loteSeleccionado;
 
     @FXML
     public void initialize() {
@@ -93,151 +77,72 @@ public class LoteController {
         colPeso.setCellValueFactory(new PropertyValueFactory<>("peso"));
         colEstado.setCellValueFactory(new PropertyValueFactory<>("estado"));
 
-        tablaLotes.setItems(lotes);
-        tablaLotes.setContextMenu(crearMenuContextual());
+        tablaLotes.setItems(listaLotes);
+
+        MenuItem opcionEditar = new MenuItem("Editar");
+        MenuItem opcionEliminar = new MenuItem("Eliminar");
+
+        opcionEditar.setOnAction(event -> editarLote());
+        opcionEliminar.setOnAction(event -> eliminarLote());
+
+        ContextMenu menu = new ContextMenu();
+        menu.getItems().add(opcionEditar);
+        menu.getItems().add(opcionEliminar);
+        tablaLotes.setContextMenu(menu);
+
         dpFechaEntrega.setValue(LocalDate.now());
         cbEstado.setValue("Recibido");
-
-        actualizarResumen();
+        lblLotesHoy.setText("0");
+        lblQuintales.setText("0.00");
     }
 
     @FXML
     private void registrarLote() {
-        if (!formularioValido()) {
+        String codigo = txtCodigo.getText();
+        String productor = txtProductor.getText();
+        String variedad = cbVariedad.getValue();
+        String pesoTexto = txtPeso.getText();
+
+        if (codigo.isEmpty() || productor.isEmpty() || variedad == null || pesoTexto.isEmpty()) {
+            Alert alerta = new Alert(Alert.AlertType.WARNING);
+            alerta.setTitle("Datos incompletos");
+            alerta.setContentText("Complete codigo, productor, variedad y peso.");
+            alerta.showAndWait();
             return;
         }
 
-        if (loteEnEdicion == null) {
-            lotes.add(crearLoteDesdeFormulario());
+        double peso;
+
+        try {
+            peso = Double.parseDouble(pesoTexto);
+        } catch (NumberFormatException e) {
+            Alert alerta = new Alert(Alert.AlertType.ERROR);
+            alerta.setTitle("Error");
+            alerta.setContentText("El peso debe ser un numero.");
+            alerta.showAndWait();
+            return;
+        }
+
+        String fecha = dpFechaEntrega.getValue().toString();
+        String estado = cbEstado.getValue();
+        String observaciones = txtObservaciones.getText();
+
+        if (loteSeleccionado == null) {
+            Lote lote = new Lote(codigo, productor, variedad, peso, fecha, estado, observaciones);
+            listaLotes.add(lote);
         } else {
-            actualizarLote(loteEnEdicion);
+            loteSeleccionado.setCodigo(codigo);
+            loteSeleccionado.setProductor(productor);
+            loteSeleccionado.setVariedad(variedad);
+            loteSeleccionado.setPeso(peso);
+            loteSeleccionado.setFechaEntrega(fecha);
+            loteSeleccionado.setEstado(estado);
+            loteSeleccionado.setObservaciones(observaciones);
             tablaLotes.refresh();
-            loteEnEdicion = null;
+            loteSeleccionado = null;
             btnRegistrar.setText("Registrar lote");
         }
 
-        limpiarFormulario();
-        actualizarResumen();
-        limpiarDetalles();
-    }
-
-    @FXML
-    private void mostrarDetalle(MouseEvent event) {
-        Lote lote = tablaLotes.getSelectionModel().getSelectedItem();
-        if (lote == null) {
-            limpiarDetalles();
-            return;
-        }
-
-        lblDetalleCodigo.setText(lote.getCodigo());
-        lblDetalleProductor.setText(lote.getProductor());
-        lblDetalleVariedad.setText(lote.getVariedad());
-        lblDetallePeso.setText(lote.getPeso() + " qq");
-    }
-
-    @FXML
-    private void editarLote() {
-        Lote lote = tablaLotes.getSelectionModel().getSelectedItem();
-        if (lote == null) {
-            mostrarAlerta(Alert.AlertType.INFORMATION, "Seleccione un lote", "Seleccione un lote de la tabla para editarlo.");
-            return;
-        }
-
-        loteEnEdicion = lote;
-        txtCodigo.setText(lote.getCodigo());
-        txtProductor.setText(lote.getProductor());
-        cbVariedad.setValue(lote.getVariedad());
-        txtPeso.setText(String.valueOf(lote.getPeso()));
-        cbEstado.setValue(lote.getEstado());
-        txtObservaciones.setText(lote.getObservaciones());
-        dpFechaEntrega.setValue(LocalDate.parse(lote.getFechaEntrega()));
-        btnRegistrar.setText("Guardar cambios");
-    }
-
-    @FXML
-    private void eliminarLote() {
-        Lote lote = tablaLotes.getSelectionModel().getSelectedItem();
-        if (lote == null) {
-            mostrarAlerta(Alert.AlertType.INFORMATION, "Seleccione un lote", "Seleccione un lote de la tabla para eliminarlo.");
-            return;
-        }
-
-        Alert confirmacion = new Alert(Alert.AlertType.CONFIRMATION);
-        confirmacion.setTitle("Confirmar eliminacion");
-        confirmacion.setHeaderText("Eliminar lote " + lote.getCodigo());
-        confirmacion.setContentText("Esta accion eliminara el lote registrado para " + lote.getProductor() + ".");
-
-        Optional<ButtonType> respuesta = confirmacion.showAndWait();
-        if (respuesta.isPresent() && respuesta.get() == ButtonType.OK) {
-            lotes.remove(lote);
-            actualizarResumen();
-            limpiarDetalles();
-            if (lote == loteEnEdicion) {
-                loteEnEdicion = null;
-                btnRegistrar.setText("Registrar lote");
-                limpiarFormulario();
-            }
-        }
-    }
-
-    private ContextMenu crearMenuContextual() {
-        MenuItem editar = new MenuItem("Editar");
-        editar.setOnAction(event -> editarLote());
-
-        MenuItem eliminar = new MenuItem("Eliminar");
-        eliminar.setOnAction(event -> eliminarLote());
-
-        return new ContextMenu(editar, eliminar);
-    }
-
-    private Lote crearLoteDesdeFormulario() {
-        return new Lote(
-                txtCodigo.getText(),
-                txtProductor.getText(),
-                cbVariedad.getValue(),
-                Double.parseDouble(txtPeso.getText()),
-                dpFechaEntrega.getValue().toString(),
-                cbEstado.getValue(),
-                txtObservaciones.getText()
-        );
-    }
-
-    private void actualizarLote(Lote lote) {
-        lote.setCodigo(txtCodigo.getText());
-        lote.setProductor(txtProductor.getText());
-        lote.setVariedad(cbVariedad.getValue());
-        lote.setPeso(Double.parseDouble(txtPeso.getText()));
-        lote.setFechaEntrega(dpFechaEntrega.getValue().toString());
-        lote.setEstado(cbEstado.getValue());
-        lote.setObservaciones(txtObservaciones.getText());
-    }
-
-    private boolean formularioValido() {
-        if (txtCodigo.getText().isBlank()
-                || txtProductor.getText().isBlank()
-                || cbVariedad.getValue() == null
-                || txtPeso.getText().isBlank()
-                || dpFechaEntrega.getValue() == null
-                || cbEstado.getValue() == null) {
-            mostrarAlerta(Alert.AlertType.WARNING, "Datos incompletos", "Complete codigo, productor, variedad, peso, fecha y estado.");
-            return false;
-        }
-
-        try {
-            double peso = Double.parseDouble(txtPeso.getText());
-            if (peso <= 0) {
-                mostrarAlerta(Alert.AlertType.WARNING, "Peso invalido", "El peso debe ser mayor que cero.");
-                return false;
-            }
-        } catch (NumberFormatException exception) {
-            mostrarAlerta(Alert.AlertType.WARNING, "Peso invalido", "Ingrese el peso usando numeros.");
-            return false;
-        }
-
-        return true;
-    }
-
-    private void limpiarFormulario() {
         txtCodigo.clear();
         txtProductor.clear();
         cbVariedad.setValue(null);
@@ -245,30 +150,85 @@ public class LoteController {
         dpFechaEntrega.setValue(LocalDate.now());
         cbEstado.setValue("Recibido");
         txtObservaciones.clear();
+
+        actualizarTotales();
     }
 
-    private void limpiarDetalles() {
-        lblDetalleCodigo.setText("--");
-        lblDetalleProductor.setText("--");
-        lblDetalleVariedad.setText("--");
-        lblDetallePeso.setText("--");
+    @FXML
+    private void mostrarDetalle(MouseEvent event) {
+        Lote lote = tablaLotes.getSelectionModel().getSelectedItem();
+
+        if (lote != null) {
+            lblDetalleCodigo.setText(lote.getCodigo());
+            lblDetalleProductor.setText(lote.getProductor());
+            lblDetalleVariedad.setText(lote.getVariedad());
+            lblDetallePeso.setText(lote.getPeso() + " qq");
+        }
     }
 
-    private void actualizarResumen() {
-        lblLotesHoy.setText(String.valueOf(lotes.size()));
+    @FXML
+    private void editarLote() {
+        Lote lote = tablaLotes.getSelectionModel().getSelectedItem();
+
+        if (lote == null) {
+            Alert alerta = new Alert(Alert.AlertType.INFORMATION);
+            alerta.setTitle("Editar");
+            alerta.setContentText("Seleccione un lote para editar.");
+            alerta.showAndWait();
+            return;
+        }
+
+        loteSeleccionado = lote;
+
+        txtCodigo.setText(lote.getCodigo());
+        txtProductor.setText(lote.getProductor());
+        cbVariedad.setValue(lote.getVariedad());
+        txtPeso.setText(String.valueOf(lote.getPeso()));
+        dpFechaEntrega.setValue(LocalDate.parse(lote.getFechaEntrega()));
+        cbEstado.setValue(lote.getEstado());
+        txtObservaciones.setText(lote.getObservaciones());
+
+        btnRegistrar.setText("Guardar cambios");
+    }
+
+    @FXML
+    private void eliminarLote() {
+        Lote lote = tablaLotes.getSelectionModel().getSelectedItem();
+
+        if (lote == null) {
+            Alert alerta = new Alert(Alert.AlertType.INFORMATION);
+            alerta.setTitle("Eliminar");
+            alerta.setContentText("Seleccione un lote para eliminar.");
+            alerta.showAndWait();
+            return;
+        }
+
+        Alert confirmacion = new Alert(Alert.AlertType.CONFIRMATION);
+        confirmacion.setTitle("Confirmar eliminacion");
+        confirmacion.setContentText("Desea eliminar el lote " + lote.getCodigo() + "?");
+
+        ButtonType respuesta = confirmacion.showAndWait().orElse(ButtonType.CANCEL);
+
+        if (respuesta == ButtonType.OK) {
+            listaLotes.remove(lote);
+            actualizarTotales();
+
+            lblDetalleCodigo.setText("--");
+            lblDetalleProductor.setText("--");
+            lblDetalleVariedad.setText("--");
+            lblDetallePeso.setText("--");
+        }
+    }
+
+    private void actualizarTotales() {
+        lblLotesHoy.setText(String.valueOf(listaLotes.size()));
 
         double total = 0;
-        for (Lote lote : lotes) {
-            total += lote.getPeso();
-        }
-        lblQuintales.setText(String.format("%.2f", total));
-    }
 
-    private void mostrarAlerta(Alert.AlertType tipo, String titulo, String mensaje) {
-        Alert alerta = new Alert(tipo);
-        alerta.setTitle(titulo);
-        alerta.setHeaderText(null);
-        alerta.setContentText(mensaje);
-        alerta.showAndWait();
+        for (Lote lote : listaLotes) {
+            total = total + lote.getPeso();
+        }
+
+        lblQuintales.setText(String.format("%.2f", total));
     }
 }
