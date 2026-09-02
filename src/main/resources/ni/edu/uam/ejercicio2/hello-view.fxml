@@ -10,65 +10,65 @@
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.VBox?>
 
-<BorderPane stylesheets="@styles.css" styleClass="app-root" xmlns:fx="http://javafx.com/fxml"
+<BorderPane style="-fx-background-color: linear-gradient(to bottom right, #fff8ee, #e7f3ea 55%, #dbece6); -fx-font-family: 'Segoe UI', Arial;" xmlns:fx="http://javafx.com/fxml"
             fx:controller="ni.edu.uam.ejercicio2.HelloController">
     <top>
-        <VBox spacing="6.0" styleClass="header">
-            <Label text="Recepcion de cafe" styleClass="title"/>
-            <Label text="Registro de lotes entregados por productores" styleClass="subtitle"/>
+        <VBox spacing="6.0" style="-fx-background-color: linear-gradient(to right, #173b30, #2f6b53); -fx-background-radius: 8; -fx-padding: 22 26 22 26; -fx-effect: dropshadow(gaussian, rgba(33, 67, 56, 0.22), 18, 0, 0, 8);">
+            <Label text="Recepcion de cafe" style="-fx-text-fill: white; -fx-font-size: 30px; -fx-font-weight: 700;"/>
+            <Label text="Registro de lotes entregados por productores" style="-fx-text-fill: #f3dfb8; -fx-font-size: 14px;"/>
         </VBox>
     </top>
 
     <center>
-        <VBox spacing="16.0" styleClass="content">
+        <VBox spacing="16.0" style="-fx-padding: 20 0 0 0;">
             <HBox spacing="14.0">
-                <VBox spacing="4.0" styleClass="metric-card">
-                    <Label text="Lotes de hoy" styleClass="metric-label"/>
-                    <Label text="12" styleClass="metric-value"/>
+                <VBox spacing="4.0" prefWidth="210.0" style="-fx-background-color: #fffdf8; -fx-background-radius: 8; -fx-border-color: #d6e4d8; -fx-border-radius: 8; -fx-padding: 16;">
+                    <Label text="Lotes de hoy" style="-fx-text-fill: #6b765c; -fx-font-size: 12px;"/>
+                    <Label text="12" style="-fx-text-fill: #1f6f50; -fx-font-size: 28px; -fx-font-weight: 700;"/>
                 </VBox>
-                <VBox spacing="4.0" styleClass="metric-card">
-                    <Label text="Quintales recibidos" styleClass="metric-label"/>
-                    <Label text="148.5" styleClass="metric-value"/>
+                <VBox spacing="4.0" prefWidth="210.0" style="-fx-background-color: #fffdf8; -fx-background-radius: 8; -fx-border-color: #d6e4d8; -fx-border-radius: 8; -fx-padding: 16;">
+                    <Label text="Quintales recibidos" style="-fx-text-fill: #6b765c; -fx-font-size: 12px;"/>
+                    <Label text="148.5" style="-fx-text-fill: #1f6f50; -fx-font-size: 28px; -fx-font-weight: 700;"/>
                 </VBox>
-                <VBox spacing="4.0" styleClass="metric-card accent-card">
-                    <Label text="Estado" styleClass="metric-label"/>
-                    <Label text="Recepcion activa" styleClass="metric-value-small"/>
+                <VBox spacing="4.0" prefWidth="210.0" style="-fx-background-color: linear-gradient(to bottom right, #fff3d8, #f4dfb2); -fx-background-radius: 8; -fx-border-color: #d6a84d; -fx-border-radius: 8; -fx-padding: 16;">
+                    <Label text="Estado" style="-fx-text-fill: #6b765c; -fx-font-size: 12px;"/>
+                    <Label text="Recepcion activa" style="-fx-text-fill: #9a5d08; -fx-font-size: 18px; -fx-font-weight: 700;"/>
                 </VBox>
             </HBox>
 
-            <VBox spacing="10.0" styleClass="table-section">
+            <VBox spacing="10.0" style="-fx-background-color: #fffdf8; -fx-background-radius: 8; -fx-border-color: #d6e4d8; -fx-border-radius: 8; -fx-padding: 16;">
                 <HBox alignment="CENTER_LEFT" spacing="12.0">
                     <VBox spacing="2.0" HBox.hgrow="ALWAYS">
-                        <Label text="Lotes registrados" styleClass="section-title"/>
-                        <Label text="Seleccione un lote para consultar sus datos principales." styleClass="helper-text"/>
+                        <Label text="Lotes registrados" style="-fx-text-fill: #184936; -fx-font-size: 17px; -fx-font-weight: 700;"/>
+                        <Label text="Seleccione un lote para consultar sus datos principales." style="-fx-text-fill: #6b765c; -fx-font-size: 12px;"/>
                     </VBox>
-                    <Button text="Editar lote" styleClass="secondary-button"/>
-                    <Button text="Eliminar lote" styleClass="danger-button"/>
+                    <Button text="Editar lote" style="-fx-background-color: linear-gradient(to right, #1f6f50, #2f8d68); -fx-background-radius: 6; -fx-text-fill: white; -fx-font-weight: 700; -fx-padding: 9 16 9 16; -fx-cursor: hand;"/>
+                    <Button text="Eliminar lote" style="-fx-background-color: #fff0e8; -fx-background-radius: 6; -fx-border-color: #e9896f; -fx-border-radius: 6; -fx-text-fill: #b43b24; -fx-font-weight: 700; -fx-padding: 9 16 9 16; -fx-cursor: hand;"/>
                 </HBox>
 
-                <TableView prefHeight="300.0" styleClass="lots-table">
+                <TableView prefHeight="300.0" style="-fx-background-color: #fffdf8; -fx-border-color: #c9dacd; -fx-border-radius: 8; -fx-background-radius: 8;">
                     <columns>
-                        <TableColumn prefWidth="120.0" text="Codigo"/>
-                        <TableColumn prefWidth="250.0" text="Productor"/>
-                        <TableColumn prefWidth="200.0" text="Variedad"/>
-                        <TableColumn prefWidth="130.0" text="Quintales"/>
+                        <TableColumn prefWidth="120.0" text="Codigo" style="-fx-alignment: CENTER_LEFT;"/>
+                        <TableColumn prefWidth="250.0" text="Productor" style="-fx-alignment: CENTER_LEFT;"/>
+                        <TableColumn prefWidth="200.0" text="Variedad" style="-fx-alignment: CENTER_LEFT;"/>
+                        <TableColumn prefWidth="130.0" text="Quintales" style="-fx-alignment: CENTER_LEFT;"/>
                     </columns>
                     <placeholder>
-                        <Label text="Aun no hay lotes registrados" styleClass="empty-table"/>
+                        <Label text="Aun no hay lotes registrados" style="-fx-text-fill: #8a7558; -fx-font-size: 14px;"/>
                     </placeholder>
                 </TableView>
             </VBox>
 
-            <GridPane hgap="16.0" vgap="10.0" styleClass="detail-panel">
-                <Label text="Detalles del lote seleccionado" styleClass="section-title" GridPane.columnIndex="0" GridPane.rowIndex="0" GridPane.columnSpan="2"/>
-                <Label text="Codigo" styleClass="detail-label" GridPane.columnIndex="0" GridPane.rowIndex="1"/>
-                <Label text="Productor" styleClass="detail-label" GridPane.columnIndex="1" GridPane.rowIndex="1"/>
-                <Label text="--" styleClass="detail-value" GridPane.columnIndex="0" GridPane.rowIndex="2"/>
-                <Label text="--" styleClass="detail-value" GridPane.columnIndex="1" GridPane.rowIndex="2"/>
-                <Label text="Variedad" styleClass="detail-label" GridPane.columnIndex="0" GridPane.rowIndex="3"/>
-                <Label text="Quintales" styleClass="detail-label" GridPane.columnIndex="1" GridPane.rowIndex="3"/>
-                <Label text="--" styleClass="detail-value" GridPane.columnIndex="0" GridPane.rowIndex="4"/>
-                <Label text="--" styleClass="detail-value" GridPane.columnIndex="1" GridPane.rowIndex="4"/>
+            <GridPane hgap="16.0" vgap="10.0" style="-fx-background-color: #fffdf8; -fx-background-radius: 8; -fx-border-color: #d6e4d8; -fx-border-radius: 8; -fx-padding: 16;">
+                <Label text="Detalles del lote seleccionado" style="-fx-text-fill: #184936; -fx-font-size: 17px; -fx-font-weight: 700;" GridPane.columnIndex="0" GridPane.rowIndex="0" GridPane.columnSpan="2"/>
+                <Label text="Codigo" style="-fx-text-fill: #6b765c; -fx-font-size: 12px;" GridPane.columnIndex="0" GridPane.rowIndex="1"/>
+                <Label text="Productor" style="-fx-text-fill: #6b765c; -fx-font-size: 12px;" GridPane.columnIndex="1" GridPane.rowIndex="1"/>
+                <Label text="--" style="-fx-text-fill: #3e2b1f; -fx-font-size: 16px; -fx-font-weight: 700;" GridPane.columnIndex="0" GridPane.rowIndex="2"/>
+                <Label text="--" style="-fx-text-fill: #3e2b1f; -fx-font-size: 16px; -fx-font-weight: 700;" GridPane.columnIndex="1" GridPane.rowIndex="2"/>
+                <Label text="Variedad" style="-fx-text-fill: #6b765c; -fx-font-size: 12px;" GridPane.columnIndex="0" GridPane.rowIndex="3"/>
+                <Label text="Quintales" style="-fx-text-fill: #6b765c; -fx-font-size: 12px;" GridPane.columnIndex="1" GridPane.rowIndex="3"/>
+                <Label text="--" style="-fx-text-fill: #3e2b1f; -fx-font-size: 16px; -fx-font-weight: 700;" GridPane.columnIndex="0" GridPane.rowIndex="4"/>
+                <Label text="--" style="-fx-text-fill: #3e2b1f; -fx-font-size: 16px; -fx-font-weight: 700;" GridPane.columnIndex="1" GridPane.rowIndex="4"/>
             </GridPane>
         </VBox>
     </center>
