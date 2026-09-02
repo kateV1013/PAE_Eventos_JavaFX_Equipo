@@ -12,12 +12,13 @@
 <?import javafx.scene.layout.BorderPane?>
 <?import javafx.scene.layout.VBox?>
 
-<BorderPane xmlns:fx="http://javafx.com/fxml"
+<BorderPane style="-fx-background-color: linear-gradient(to bottom right, #fff5e6, #f5d6c6, #eadff8);"
+            xmlns:fx="http://javafx.com/fxml"
             fx:controller="org.example.practicasemana3.Ejercicio3.HelloController">
     <top>
-        <VBox>
-            <MenuBar>
-                <Menu text="Catalogo">
+        <VBox style="-fx-background-color: #fff8ef;">
+            <MenuBar style="-fx-background-color: #7b3424;">
+                <Menu text="Catalogo" style="-fx-text-fill: white;">
                     <MenuItem text="Nuevo producto" onAction="#nuevoProducto"/>
                     <MenuItem text="Editar cantidad" onAction="#editarCantidad"/>
                     <MenuItem text="Eliminar producto" onAction="#eliminarProducto"/>
@@ -25,44 +26,49 @@
                     <MenuItem text="Buscar producto" onAction="#buscarProducto"/>
                     <MenuItem text="Ver catalogo" onAction="#mostrarCatalogo"/>
                 </Menu>
-                <Menu text="Ventas">
+                <Menu text="Ventas" style="-fx-text-fill: white;">
                     <MenuItem text="Registrar venta" onAction="#registrarVenta"/>
                 </Menu>
-                <Menu text="Ayuda">
+                <Menu text="Ayuda" style="-fx-text-fill: white;">
                     <MenuItem text="Ver ayuda" onAction="#mostrarAyuda"/>
                 </Menu>
             </MenuBar>
-            <ToolBar>
-                <Button text="Nuevo" onAction="#nuevoProducto"/>
-                <Button text="Cantidad" onAction="#editarCantidad"/>
-                <Button text="Eliminar" onAction="#eliminarProducto"/>
-                <Button text="Guardar" onAction="#guardarCatalogo"/>
-                <Button text="Buscar" onAction="#buscarProducto"/>
+            <ToolBar style="-fx-background-color: linear-gradient(to right, #c46a45, #8a5db7, #d99a3d); -fx-padding: 10;">
+                <Button text="Nuevo" onAction="#nuevoProducto" style="-fx-background-color: #fff5e6; -fx-background-radius: 7; -fx-text-fill: #7b3424; -fx-font-weight: 700;"/>
+                <Button text="Cantidad" onAction="#editarCantidad" style="-fx-background-color: #fff5e6; -fx-background-radius: 7; -fx-text-fill: #7b3424; -fx-font-weight: 700;"/>
+                <Button text="Eliminar" onAction="#eliminarProducto" style="-fx-background-color: #f8d2c2; -fx-background-radius: 7; -fx-text-fill: #7b2516; -fx-font-weight: 700;"/>
+                <Button text="Guardar" onAction="#guardarCatalogo" style="-fx-background-color: #fff5e6; -fx-background-radius: 7; -fx-text-fill: #7b3424; -fx-font-weight: 700;"/>
+                <Button text="Buscar" onAction="#buscarProducto" style="-fx-background-color: #fff5e6; -fx-background-radius: 7; -fx-text-fill: #7b3424; -fx-font-weight: 700;"/>
             </ToolBar>
         </VBox>
     </top>
 
     <center>
-        <TableView fx:id="tblProductos" onMouseClicked="#mostrarDetalleConMouse">
-            <columns>
-                <TableColumn fx:id="colImagen" text="Imagen" prefWidth="90"/>
-                <TableColumn fx:id="colCodigo" text="Codigo" prefWidth="90"/>
-                <TableColumn fx:id="colNombre" text="Producto" prefWidth="190"/>
-                <TableColumn fx:id="colCategoria" text="Categoria" prefWidth="140"/>
-                <TableColumn fx:id="colPrecio" text="Precio" prefWidth="100"/>
-                <TableColumn fx:id="colCantidad" text="Cantidad" prefWidth="90"/>
-            </columns>
-        </TableView>
+        <VBox spacing="12.0" style="-fx-padding: 18; -fx-background-color: transparent;">
+            <Label text="Tienda de artesanias" style="-fx-text-fill: #7b3424; -fx-font-size: 24px; -fx-font-weight: 700;"/>
+            <Label text="Catalogo de productos artesanales disponibles" style="-fx-text-fill: #6f4f75; -fx-font-size: 13px; -fx-font-weight: 700;"/>
+
+            <TableView fx:id="tblProductos" onMouseClicked="#mostrarDetalleConMouse" style="-fx-background-color: #fffaf2; -fx-border-color: #c46a45; -fx-border-radius: 10; -fx-background-radius: 10;">
+                <columns>
+                    <TableColumn fx:id="colImagen" text="Imagen" prefWidth="90"/>
+                    <TableColumn fx:id="colCodigo" text="Codigo" prefWidth="90"/>
+                    <TableColumn fx:id="colNombre" text="Producto" prefWidth="190"/>
+                    <TableColumn fx:id="colCategoria" text="Categoria" prefWidth="140"/>
+                    <TableColumn fx:id="colPrecio" text="Precio" prefWidth="100"/>
+                    <TableColumn fx:id="colCantidad" text="Cantidad" prefWidth="90"/>
+                </columns>
+            </TableView>
+        </VBox>
     </center>
 
     <bottom>
-        <VBox spacing="8.0">
+        <VBox spacing="8.0" style="-fx-background-color: #fff5e6; -fx-border-color: #d99a3d; -fx-border-width: 2 0 0 0;">
             <padding>
-                <Insets bottom="14.0" left="14.0" right="14.0" top="14.0"/>
+                <Insets bottom="14.0" left="18.0" right="18.0" top="14.0"/>
             </padding>
-            <Label text="Detalle del producto" style="-fx-font-size: 16px; -fx-font-weight: bold;"/>
-            <Label fx:id="lblDetalle" text="Seleccione un producto para ver sus detalles." wrapText="true"/>
-            <Label fx:id="lblEstado" text="Catalogo artesanal listo." wrapText="true"/>
+            <Label text="Detalle del producto" style="-fx-text-fill: #7b3424; -fx-font-size: 16px; -fx-font-weight: 700;"/>
+            <Label fx:id="lblDetalle" text="Seleccione un producto para ver sus detalles." wrapText="true" style="-fx-text-fill: #4d2a22; -fx-font-size: 13px;"/>
+            <Label fx:id="lblEstado" text="Catalogo artesanal listo." wrapText="true" style="-fx-text-fill: #6f4f75; -fx-font-size: 13px; -fx-font-weight: 700;"/>
         </VBox>
     </bottom>
 </BorderPane>
