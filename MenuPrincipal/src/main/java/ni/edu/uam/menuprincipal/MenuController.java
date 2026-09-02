@@ -25,7 +25,15 @@ public class MenuController {
 
     private void abrirPrograma(String carpeta) {
         try {
-            File raiz = new File("").getAbsoluteFile().getParentFile();
+            File carpetaActual = new File("").getAbsoluteFile();
+            File raiz;
+
+            if (carpetaActual.getName().equals("MenuPrincipal")) {
+                raiz = carpetaActual.getParentFile();
+            } else {
+                raiz = carpetaActual;
+            }
+
             File proyecto = new File(raiz, carpeta);
 
             ProcessBuilder proceso = new ProcessBuilder("cmd", "/c", "mvnw.cmd", "javafx:run");
