@@ -106,7 +106,7 @@ public class HelloController {
         txtCantidad.clear();
         txtCodigo.requestFocus();
     }
-
+//hola mundo
     private void actualizarListado() {
         if (inventario.isEmpty()) {
             txtInventario.setText("Sin productos registrados.");
