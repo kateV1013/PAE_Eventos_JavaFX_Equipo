@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
+
+<VBox alignment="CENTER" spacing="24.0" style="-fx-background-color: linear-gradient(to bottom right, #263b2b, #6b3f25, #e7d3ae); -fx-font-family: 'Segoe UI', Arial;"
+      xmlns:fx="http://javafx.com/fxml" fx:controller="ni.edu.uam.menuprincipal.MenuController">
+    <padding>
+        <Insets bottom="32.0" left="32.0" right="32.0" top="32.0"/>
+    </padding>
+
+    <VBox alignment="CENTER" spacing="8.0" style="-fx-background-color: rgba(47, 27, 18, 0.88); -fx-background-radius: 12; -fx-padding: 28 36 28 36;">
+        <Label text="&#x2615;" style="-fx-font-size: 48px; -fx-text-fill: #f9ead1;"/>
+        <Label text="Menu de Programas JavaFX" style="-fx-text-fill: #fff8ec; -fx-font-size: 30px; -fx-font-weight: 700;"/>
+        <Label text="Seleccione el ejercicio que desea utilizar" style="-fx-text-fill: #d7e7c4; -fx-font-size: 15px;"/>
+    </VBox>
+
+    <HBox alignment="CENTER" spacing="18.0">
+        <VBox alignment="CENTER" spacing="12.0" prefWidth="190.0" style="-fx-background-color: #f9ead1; -fx-background-radius: 10; -fx-border-color: #b8884f; -fx-border-radius: 10; -fx-padding: 20;">
+            <Label text="Ejercicio 1" style="-fx-text-fill: #2f1b12; -fx-font-size: 20px; -fx-font-weight: 700;"/>
+            <Label text="Primer programa" style="-fx-text-fill: #7a5638; -fx-font-size: 12px;"/>
+            <Button text="Abrir" onAction="#abrirEjercicio1" prefWidth="130.0" style="-fx-background-color: #28543d; -fx-background-radius: 7; -fx-text-fill: #fffaf1; -fx-font-weight: 700;"/>
+        </VBox>
+
+        <VBox alignment="CENTER" spacing="12.0" prefWidth="190.0" style="-fx-background-color: #f9ead1; -fx-background-radius: 10; -fx-border-color: #b8884f; -fx-border-radius: 10; -fx-padding: 20;">
+            <Label text="Ejercicio 2" style="-fx-text-fill: #2f1b12; -fx-font-size: 20px; -fx-font-weight: 700;"/>
+            <Label text="Recepcion de cafe" style="-fx-text-fill: #7a5638; -fx-font-size: 12px;"/>
+            <Button text="Abrir" onAction="#abrirEjercicio2" prefWidth="130.0" style="-fx-background-color: #28543d; -fx-background-radius: 7; -fx-text-fill: #fffaf1; -fx-font-weight: 700;"/>
+        </VBox>
+
+        <VBox alignment="CENTER" spacing="12.0" prefWidth="190.0" style="-fx-background-color: #f9ead1; -fx-background-radius: 10; -fx-border-color: #b8884f; -fx-border-radius: 10; -fx-padding: 20;">
+            <Label text="Ejercicio 3" style="-fx-text-fill: #2f1b12; -fx-font-size: 20px; -fx-font-weight: 700;"/>
+            <Label text="Tercer programa" style="-fx-text-fill: #7a5638; -fx-font-size: 12px;"/>
+            <Button text="Abrir" onAction="#abrirEjercicio3" prefWidth="130.0" style="-fx-background-color: #28543d; -fx-background-radius: 7; -fx-text-fill: #fffaf1; -fx-font-weight: 700;"/>
+        </VBox>
+    </HBox>
+</VBox>
